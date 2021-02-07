@@ -12,7 +12,7 @@
 
 (defun fast-power (base n)
   (cond ((zerop n) 1)
-        ((evenp n) (power (* base base) (/ n 2)))
-        (t (* base (power base (1- n))))))
+        ((evenp n) (fast-power (* base base) (/ n 2)))
+        (t (* base (fast-power base (1- n))))))
 
 (fast-power 5 2)
