@@ -104,3 +104,20 @@
 (defmacro while2 (test &rest body)
   `(loop (unless ,test (return nil))
          `@body))
+
+
+
+(defun find-all (item sequence &rest keyword-args
+                                 &key (test #'eql)
+                                   test-not
+                                   &allow-other-keys)
+  (if test-not
+      (apply #'remove item sequence
+             :test-not (complement test-not) keyword-args)
+      (apply #'remove item sequence
+             :test (complement test) keyword-args)))
+
+(setf nums '(1 2 3 2 1)) 
+(find-all 1 nums :test #'= :key #'abs)
+
+
