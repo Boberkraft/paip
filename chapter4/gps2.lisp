@@ -48,13 +48,13 @@
   "An op is appropriate to a goal if it is in its add-list."
   (member-equal goal (op-add-list op)))
 
-(defun action-p (x)
-  (or (equal x '(start))
-      (executing-p x)))
-
 (defun GPS (state goals &optional (*ops* *ops*))
   "General Problem Solver: from state, achieve goals using *ops*."
-  (remove-if-not #'action-p (achieve-all (cons '(start) state) goals nil)))
+  (remove-if-not #'action-p
+               (achieve-all (cons '(start) state) goals nil)))
+(defun action-p (x)
+  "Is x something that is (start) or (executing ...)?"
+  (or (equal x '(start)) (executing-p x)))
 
 (defparameter *banana-ops*
   (list
