@@ -22,14 +22,8 @@
 
 (defun achieve-all (state goals goal-stack)
   "Achieve each goal, trying several orderings."
-
- 
-  (let ((a (if nil
-               state
-               (some #'(lambda (goals) (achieve-each state goals goal-stack))
-                     (orderings goals)))))
-    ;;(dbg-indent :gps (length goal-stack) "XXX: ~a" a)
-    a))
+  (some #'(lambda (goals) (achieve-each state goals goal-stack))
+        (orderings goals)))
 
 (defun achieve-each (state goals goal-stack)
   "Achieve each goal, and make sure they still hold at the end."
