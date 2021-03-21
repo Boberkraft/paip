@@ -55,6 +55,8 @@
        (EXECUTING (EAT ICE CREAM)))
 
 
+;; (3)
+
 (defun achievedp (state goal)
   (member-equal goal state))
 
@@ -77,3 +79,7 @@
                                state2)
                     (op-add-list op)))
           ))))
+
+#+ nil ((START)
+        (EXECUTING (BUY CAKE))
+        (EXECUTING (EAT CAKE)))
